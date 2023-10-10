@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:freebook_app/core/utils/styles.dart';
+import 'widgets/best_seller_listview.dart';
+import 'widgets/best_seller_section.dart';
 import 'widgets/featured_listview.dart';
 import 'widgets/home_appbar.dart';
 
@@ -9,14 +12,39 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SafeArea(
       child: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            HomeViewAppBar(),
-            FeaturedBooksListView(),
-          ],
-        ),
-      ),
+          body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                HomeViewAppBar(),
+                FeaturedBooksListView(),
+                SizedBox(
+                  height: 50,
+                ),
+                // BestSellerSection(),
+                Padding(
+                  padding: EdgeInsets.only(left: 30),
+                  child: Text(
+                    'Best Seller',
+                    style: Styles.textstyle18,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: BestSellerListView(),
+            ),
+          )
+        ],
+      )),
     );
   }
 }
