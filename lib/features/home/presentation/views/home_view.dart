@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freebook_app/core/utils/styles.dart';
 import 'widgets/best_seller_listview.dart';
-import 'widgets/best_seller_section.dart';
+
 import 'widgets/featured_listview.dart';
 import 'widgets/home_appbar.dart';
 
@@ -13,6 +13,7 @@ class HomeView extends StatelessWidget {
     return const SafeArea(
       child: Scaffold(
           body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
         slivers: [
           SliverToBoxAdapter(
             child: Column(
