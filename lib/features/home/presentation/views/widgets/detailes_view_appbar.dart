@@ -7,7 +7,7 @@ class DetailesViewAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 30, right: 30, top: 30, bottom: 30),
+      padding: const EdgeInsets.only(left: 30, right: 30, top: 30, bottom: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
