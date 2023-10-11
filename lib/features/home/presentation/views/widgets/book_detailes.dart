@@ -37,7 +37,7 @@ class BookDetailes extends StatelessWidget {
             textAlign: TextAlign.center,
             style: Styles.textstyle30
                 .copyWith(fontFamily: 'GT Sectra Fine Regular'),
-            maxLines: 2,
+            maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
         ),
