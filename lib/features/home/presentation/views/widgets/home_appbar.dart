@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:freebook_app/core/utils/app_router.dart';
 import 'package:freebook_app/core/utils/assets.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeViewAppBar extends StatelessWidget {
   const HomeViewAppBar({super.key});
@@ -17,7 +19,9 @@ class HomeViewAppBar extends StatelessWidget {
             semanticsLabel: 'logo',
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              context.push(AppRouter.kSearchView);
+            },
             icon: SvgPicture.asset(
               AssetsData.search,
               semanticsLabel: 'Search',
