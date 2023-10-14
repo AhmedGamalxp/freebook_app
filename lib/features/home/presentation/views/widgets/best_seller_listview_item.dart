@@ -1,12 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:freebook_app/core/utils/assets.dart';
 import 'package:freebook_app/core/utils/styles.dart';
+import 'package:freebook_app/features/home/data/models/book_model/book_model.dart';
 
 import 'ratting_book.dart';
 
 class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key});
-
+  const BestSellerListViewItem({super.key, required this.book});
+  final BookModel book;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -15,14 +16,12 @@ class BestSellerListViewItem extends StatelessWidget {
           height: 125,
           child: AspectRatio(
             aspectRatio: 2.7 / 4,
-            child: Container(
-              clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16), color: Colors.white),
-              child: Image.asset(
-                AssetsData.test,
-                fit: BoxFit.cover,
-              ),
+            child: CachedNetworkImage(
+              errorWidget: (context, url, error) =>
+                  const Center(child: Icon(Icons.error)),
+              fit: BoxFit.fill,
+              imageUrl: book.volumeInfo?.imageLinks?.thumbnail ??
+                  'https://www.shutterstock.com/image-vector/no-image-available-icon-template-260nw-1036735678.jpg',
             ),
           ),
         ),
@@ -32,23 +31,23 @@ class BestSellerListViewItem extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
+            SizedBox(
               width: 200,
               child: Text(
-                'Harry Potter and the Goblet of Fire',
+                book.volumeInfo!.title ?? '',
                 style: Styles.textstyle20,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 3),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 3),
               child: SizedBox(
                 width: 200,
                 child: Opacity(
                   opacity: 0.7,
                   child: Text(
-                    'J.K. Rowling',
+                    book.volumeInfo?.authors?[0] ?? '',
                     style: Styles.textstyle14,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -69,7 +68,10 @@ class BestSellerListViewItem extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const RattingBook(),
+                  RattingBook(
+                    count: book.volumeInfo?.ratingsCount ?? 0,
+                    rating: book.volumeInfo?.averageRating ?? 0,
+                  ),
                 ],
               ),
             ),

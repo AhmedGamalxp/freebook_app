@@ -4,7 +4,11 @@ import 'package:freebook_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
-void setup() {
-  getIt.registerSingleton<HomeRepoEmpl>(HomeRepoEmpl(getIt.get<ApiServices>()));
+void setupServiceLocator() {
   getIt.registerSingleton<ApiServices>(ApiServices(Dio()));
+  getIt.registerSingleton<HomeRepoEmpl>(
+    HomeRepoEmpl(
+      getIt.get<ApiServices>(),
+    ),
+  );
 }

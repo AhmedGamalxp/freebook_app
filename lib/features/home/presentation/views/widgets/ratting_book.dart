@@ -4,8 +4,9 @@ import 'package:freebook_app/core/utils/assets.dart';
 import 'package:freebook_app/core/utils/styles.dart';
 
 class RattingBook extends StatelessWidget {
-  const RattingBook({super.key});
-
+  const RattingBook({super.key, required this.count, required this.rating});
+  final int count;
+  final num rating;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -15,15 +16,14 @@ class RattingBook extends StatelessWidget {
           AssetsData.star,
           semanticsLabel: 'star',
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
           child: Text(
-            '4.8',
+            '$rating',
             style: Styles.textstyle16,
           ),
         ),
-        const Opacity(
-            opacity: 0.5, child: Text('(2345)', style: Styles.textstyle16)),
+        Opacity(opacity: 0.5, child: Text('$count', style: Styles.textstyle16)),
       ],
     );
   }

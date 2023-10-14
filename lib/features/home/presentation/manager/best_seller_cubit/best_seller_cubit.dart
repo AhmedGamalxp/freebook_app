@@ -11,12 +11,10 @@ class BestSellerCubit extends Cubit<BestSellerState> {
   Future<void> fetchBestSellerBooks() async {
     emit(BestSellerLoading());
     var resulte = await homeRepo.fetchBestSellerBooks();
-    resulte.fold(
-        (failure) => () {
-              emit(BestSellerFailure(errMassage: failure.errMessage));
-            },
-        (books) => () {
-              emit(BestSellerSuccess(books: books));
-            });
+    resulte.fold((failure) {
+      emit(BestSellerFailure(errMassage: failure.errMessage));
+    }, (books) {
+      emit(BestSellerSuccess(books: books));
+    });
   }
 }
