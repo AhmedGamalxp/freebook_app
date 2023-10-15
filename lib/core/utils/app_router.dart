@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freebook_app/core/utils/services_locator.dart';
+import 'package:freebook_app/features/home/data/models/book_model/book_model.dart';
+import 'package:freebook_app/features/home/data/repos/home_repo_impl.dart';
+
+import 'package:freebook_app/features/home/presentation/manager/book_detailes_cubit/book_detailes_cubit.dart';
 import 'package:freebook_app/features/home/presentation/views/home_detailes_view.dart';
 import 'package:freebook_app/features/home/presentation/views/home_view.dart';
 import 'package:freebook_app/features/search/presentation/views/search_view.dart';
@@ -21,12 +27,15 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kHomeDetailesView,
-        builder: (context, state) => const HomeDetailesView(),
-      ),
-      GoRoute(
-        path: kHomeDetailesView,
-        builder: (BuildContext context, GoRouterState state) {
-          return const HomeDetailesView();
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => BookDetailesCubit(
+              getIt.get<HomeRepoEmpl>(),
+            ),
+            child: HomeDetailesView(
+              book: state.extra as BookModel,
+            ),
+          );
         },
       ),
       GoRoute(

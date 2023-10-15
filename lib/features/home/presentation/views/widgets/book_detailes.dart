@@ -1,12 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:freebook_app/core/utils/assets.dart';
+
 import 'package:freebook_app/core/utils/styles.dart';
+import 'package:freebook_app/features/home/data/models/book_model/book_model.dart';
 
 import 'ratting_book.dart';
 
 class BookDetailes extends StatelessWidget {
-  const BookDetailes({super.key});
-
+  const BookDetailes({
+    super.key,
+    required this.book,
+  });
+  final BookModel book;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,14 +21,12 @@ class BookDetailes extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.3,
           child: AspectRatio(
             aspectRatio: 2.7 / 4,
-            child: Container(
-              clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16), color: Colors.white),
-              child: Image.asset(
-                AssetsData.test,
-                fit: BoxFit.cover,
-              ),
+            child: CachedNetworkImage(
+              errorWidget: (context, url, error) =>
+                  const Center(child: Icon(Icons.error)),
+              fit: BoxFit.fill,
+              imageUrl: book.volumeInfo?.imageLinks?.thumbnail ??
+                  'https://www.shutterstock.com/image-vector/no-image-available-icon-template-260nw-1036735678.jpg',
             ),
           ),
         ),
@@ -33,7 +36,7 @@ class BookDetailes extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 60),
           child: Text(
-            'Harry Potter and the Goblet of Fire',
+            book.volumeInfo!.title!,
             textAlign: TextAlign.center,
             style: Styles.textstyle30
                 .copyWith(fontFamily: 'GT Sectra Fine Regular'),
@@ -44,10 +47,10 @@ class BookDetailes extends StatelessWidget {
         const SizedBox(
           height: 6,
         ),
-        const Opacity(
+        Opacity(
           opacity: 0.7,
           child: Text(
-            'Rudyard Kipling',
+            book.volumeInfo!.authors![0],
             textAlign: TextAlign.center,
             style: Styles.textstyle18,
             maxLines: 1,
@@ -57,9 +60,9 @@ class BookDetailes extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        const RattingBook(
-          count: 0,
-          rating: 0,
+        RattingBook(
+          count: book.volumeInfo?.ratingsCount ?? 0,
+          rating: book.volumeInfo?.averageRating ?? 0,
         ),
       ],
     );
