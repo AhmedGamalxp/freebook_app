@@ -36,7 +36,12 @@ class _HomeDetailesViewState extends State<HomeDetailesView> {
           const SizedBox(
             height: 30,
           ),
-          const BottonAction(),
+          BottonAction(
+            book: widget.book,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
           const Spacer(),
           const RelatedBooksSection(),
         ],

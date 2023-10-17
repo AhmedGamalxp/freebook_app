@@ -7,11 +7,13 @@ class CustomBotton extends StatelessWidget {
       required this.text,
       required this.color,
       required this.borderRadius,
-      required this.backgroundColor});
+      required this.backgroundColor,
+      this.onPressed});
   final String text;
   final Color color;
   final Color backgroundColor;
   final BorderRadius borderRadius;
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -23,7 +25,7 @@ class CustomBotton extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: borderRadius,
               )),
-          onPressed: () {},
+          onPressed: onPressed,
           child: Text(
             text,
             style: Styles.textstyle18.copyWith(color: color, fontSize: 16),

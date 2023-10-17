@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 
 class CustomFormField extends StatelessWidget {
-  const CustomFormField({super.key});
-
+  const CustomFormField({super.key, this.onSubmitted, this.iconTap});
+  final void Function(String)? onSubmitted;
+  final void Function()? iconTap;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onFieldSubmitted: onSubmitted,
       cursorColor: Colors.white,
       decoration: InputDecoration(
-        suffixIcon: const Icon(Icons.search),
+        suffixIcon: GestureDetector(
+          onTap: iconTap,
+          child: const Icon(Icons.search),
+        ),
         suffixIconColor: Colors.white,
         enabledBorder: outLineInputBorder(),
         focusedBorder: outLineInputBorder(),

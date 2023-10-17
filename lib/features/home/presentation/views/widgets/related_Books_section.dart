@@ -4,7 +4,9 @@ import 'package:freebook_app/core/utils/styles.dart';
 import 'related_books_listview.dart';
 
 class RelatedBooksSection extends StatelessWidget {
-  const RelatedBooksSection({super.key});
+  const RelatedBooksSection({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

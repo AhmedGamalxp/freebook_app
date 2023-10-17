@@ -23,7 +23,8 @@ class RattingBook extends StatelessWidget {
             style: Styles.textstyle16,
           ),
         ),
-        Opacity(opacity: 0.5, child: Text('$count', style: Styles.textstyle16)),
+        Opacity(
+            opacity: 0.5, child: Text('($count)', style: Styles.textstyle16)),
       ],
     );
   }

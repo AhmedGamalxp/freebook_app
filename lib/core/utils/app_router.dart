@@ -7,6 +7,7 @@ import 'package:freebook_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:freebook_app/features/home/presentation/manager/book_detailes_cubit/book_detailes_cubit.dart';
 import 'package:freebook_app/features/home/presentation/views/home_detailes_view.dart';
 import 'package:freebook_app/features/home/presentation/views/home_view.dart';
+import 'package:freebook_app/features/search/presentation/manager/search_cubit/search_cubit.dart';
 import 'package:freebook_app/features/search/presentation/views/search_view.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/splash/presentation/splash_view.dart';
@@ -40,8 +41,13 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kSearchView,
-        builder: (BuildContext context, GoRouterState state) {
-          return const SearchView();
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => SearchCubit(
+              getIt.get<HomeRepoEmpl>(),
+            ),
+            child: const SearchView(),
+          );
         },
       ),
     ],
