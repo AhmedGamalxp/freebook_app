@@ -10,6 +10,7 @@ class CustomFormField extends StatelessWidget {
       onFieldSubmitted: onSubmitted,
       cursorColor: Colors.white,
       decoration: InputDecoration(
+        hintText: 'please enter your category',
         suffixIcon: GestureDetector(
           onTap: iconTap,
           child: const Icon(Icons.search),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freebook_app/core/utils/styles.dart';
+import 'package:freebook_app/core/widgets/custom_indicator.dart';
 import 'package:freebook_app/core/widgets/error_widget.dart';
 import 'package:freebook_app/features/search/presentation/manager/search_cubit/search_cubit.dart';
 import 'package:freebook_app/features/search/presentation/views/widgets/search_item.dart';
@@ -34,6 +35,8 @@ class _SearchListViewState extends State<SearchListView> {
           );
         } else if (state is SearchFailure) {
           return CustomErorrWidget(errMassage: state.errMassage);
+        } else if (state is SearchLoading) {
+          return const CustomIndicator();
         } else {
           return const Column(
             children: [
