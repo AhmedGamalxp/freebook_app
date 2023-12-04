@@ -1,16 +1,29 @@
-# freebook_app
 
-A new Flutter project.
+# FreeBook App
 
-## Getting Started
+it's a very simple app showing you free books and allow you to read them , also showing related books and allow you to search for books .
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Features
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- get books and read them
+- get related books
+- search for a book
+
+
+## Technologies
+- flutter / dart
+- animation
+- api
+- http / dio
+- version controll
+- postman
+## Screenshots
+<img src="screen shots/b1.jpeg" width=300 hight=400>    <img src="screen shots/b2.jpeg" width=300 hight=400>      <img src="screen shots/b3.jpeg" width=300 hight=400>
+<img src="screen shots/b4.jpeg" width=300 hight=400>    <img src="screen shots/b5.jpeg" width=300 hight=400>
+
+
+
+
+
