@@ -22,6 +22,11 @@ class SearchView extends StatelessWidget {
                     category: value,
                   );
                 },
+                onChanged: (value) {
+                  BlocProvider.of<SearchCubit>(context).fetchSearchList(
+                    category: value,
+                  );
+                },
               ),
               const SizedBox(
                 height: 20,
